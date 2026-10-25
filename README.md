@@ -1,29 +1,26 @@
 # Multithreaded Task Execution Engine
 
-A lightweight task execution engine implemented in C++17 using a fixed-size thread pool, a synchronized task queue, and standard C++ concurrency primitives.
+A lightweight task execution engine built with C++17 that uses a fixed-size thread pool, a synchronized task queue, and standard C++ concurrency primitives to execute tasks efficiently.
 
 ## Features
 
-- **Fixed-size thread pool:** Reuses worker threads instead of creating a new thread for every task.
-- **Thread-safe task submission:** Multiple callers can submit tasks through a mutex-protected queue.
-- **Condition-variable scheduling:** Workers sleep when no tasks are available and wake when work arrives.
-- **Generic task execution:** Supports callable objects, lambdas, function arguments, and return values.
-- **Asynchronous results:** Uses `std::future` to retrieve results from submitted tasks.
-- **Exception propagation:** Task exceptions can be retrieved through their associated futures.
-- **Graceful shutdown:** Rejects new submissions and processes queued tasks before joining worker threads.
-- **Automated tests:** Covers worker configuration, results, task throughput, exception handling, and shutdown.
+- **Fixed-Size Thread Pool:** Reuses worker threads to avoid creating a new thread for every task.
+- **Thread-Safe Task Submission:** Uses a mutex-protected queue to safely manage tasks submitted by multiple callers.
+- **Condition-Variable Scheduling:** Keeps worker threads idle when no tasks are available and wakes them when new work arrives.
+- **Generic Task Execution:** Supports callable objects, lambda expressions, function arguments, and return values.
+- **Asynchronous Result Handling:** Uses `std::future` to retrieve task results without directly managing worker threads.
+- **Exception Propagation:** Makes task exceptions available through the corresponding futures.
+- **Graceful Shutdown:** Stops accepting new tasks, completes queued work, and joins worker threads.
+- **Automated Testing:** Includes tests for worker configuration, task execution, result retrieval, exception handling, and shutdown behavior.
 
 ## Technology Stack
 
-- C++17
-- Standard Template Library (STL)
-- `std::thread`
-- `std::mutex`
-- `std::condition_variable`
-- `std::packaged_task`
-- `std::future`
-- CMake
-- CTest
+- **Language:** C++17
+- **Standard Library:** STL
+- **Concurrency:** `std::thread`, `std::mutex`, `std::condition_variable`
+- **Task Management:** `std::packaged_task`, `std::future`
+- **Build System:** CMake
+- **Testing:** CTest
 
 ## Project Structure
 
@@ -39,3 +36,4 @@ A lightweight task execution engine implemented in C++17 using a fixed-size thre
 ├── CMakeLists.txt
 ├── README.md
 └── .gitignore
+```
